@@ -1,8 +1,4 @@
-import time
-
 import scrapy
-from scrapy import Request
-from scrapy.http import FormRequest
 import re
 import os
 import json
@@ -76,21 +72,11 @@ class FundaSold(scrapy.Spider):
                 f.seek(0)
                 f.write(str(html_content))
                 f.truncate()
-                # yield Request(element, headers=headers, callback=self.parse)
-                # start_urls = [url.strip() for url in f.readlines()]
-                # start_urls = ["file:///house_element.html"]
                 yield scrapy.Request(
                     "file:///home/hiba/PycharmProjects/SoldDates/FundaSold/FundaSold/spiders/house_element.html",
                     callback=self.parse, dont_filter=True)
-                # yield FormRequest(html_content, callback=self.parse)
 
-    # start_urls = ["https://www.funda.nl/koop/bergen-op-zoom/appartement-88067624-zonneplein-21/",
-    #             "https://www.funda.nl/koop/eindhoven/huis-42603084-midaslaan-6/"]
-    """path = "file:///home/crawler1/house_1/"
-    start_urls = []
-    for filename in os.listdir("/home/crawler1/house_1"):
-        if filename.endswith(".html"):
-            start_urls.append(path + filename)"""
+
 
     def parse(self, response):
         res = response.xpath(
