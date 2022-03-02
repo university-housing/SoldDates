@@ -55,7 +55,7 @@ class FundaSold(scrapy.Spider):
         headers = {'User-Agent': ua.random}
 
         # Go through all funda sold pages (retrieved from funda website)
-        for page in range(6366, 12920):
+        for page in range(6414, 12920):
             print('\033[92m' + "PAGE: " + str(page) + '\033[0m')
             f2 = open("lastpage.txt", "w")
             f2.write(str(page) + "\n")
